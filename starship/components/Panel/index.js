@@ -1,6 +1,7 @@
 // Core
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 // Instruments
 import Styles from './styles.m.css';
@@ -12,6 +13,7 @@ import { StarshipTile } from '../StarshipTile';
 const mapStateToProps = (state) => ({
     isFetching: state.ui.isFetching,
     starships:  state.feed.starships,
+    ...state.intl,
 });
 
 const mapDispatchToProps = {
@@ -35,9 +37,21 @@ export class Panel extends Component {
     };
 
     render() {
-        const { isFetching, starships, history } = this.props;
+        const { isFetching, starships, history, messages } = this.props;
 
-        const buttonMessage = isFetching ? '⏳ Вызываю...' : '📲 Вызвать корабли';
+        const buttonMessage = isFetching ? (
+            <FormattedMessage
+                defaultMessage = { messages[ 'panel-btn-1' ] }
+                id = 'panel-btn-1'
+                tagName = 'span'
+            />
+        ) : (
+            <FormattedMessage
+                defaultMessage = { messages[ 'panel-btn-2' ] }
+                id = 'panel-btn-2'
+                tagName = 'span'
+            />
+        );
 
         return (
             <section className = { Styles.panel }>

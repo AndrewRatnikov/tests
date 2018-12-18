@@ -10,12 +10,15 @@ import { history } from './init/middleware';
 
 // Components
 import { Routes } from './routes';
+import { ConnectedIntlProvider } from './components/IntlProvider';
 
 render(
     <Provider store = { store }>
-        <Router history = { history }>
-            <Routes />
-        </Router>
+        <ConnectedIntlProvider>
+            <Router history = { history }>
+                <Routes />
+            </Router>
+        </ConnectedIntlProvider>
     </Provider>,
     document.getElementById('app'),
 );

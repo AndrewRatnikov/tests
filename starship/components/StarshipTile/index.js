@@ -1,9 +1,12 @@
 // Core
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
 
 // Instruments
 import Styles from './styles.m.css';
 
+@connect((state) => state.intl)
 export class StarshipTile extends Component {
     _navigateToStarship = () => {
         const { history, name } = this.props;
@@ -11,7 +14,7 @@ export class StarshipTile extends Component {
     };
 
     render() {
-        const { name, crew, manufacturer, starship_class: starshipClass } = this.props;
+        const { name, crew, manufacturer, starship_class: starshipClass, messages } = this.props;
 
         return (
             <section
@@ -20,28 +23,48 @@ export class StarshipTile extends Component {
                 <h1>🛸</h1>
                 <div className = { Styles.description }>
                     <div>
-                        <span>Name:</span>
+                        <FormattedMessage
+                            defaultMessage = { messages[ 'starship-tile-1' ] }
+                            description = 'name'
+                            id = 'starship-tile-1'
+                            tagName = 'span'
+                        />
                         <span>
                             &nbsp;
                             {name}
                         </span>
                     </div>
                     <div>
-                        <span>Class:</span>
+                        <FormattedMessage
+                            defaultMessage = { messages[ 'starship-tile-2' ] }
+                            description = 'class'
+                            id = 'starship-tile-2'
+                            tagName = 'span'
+                        />
                         <span>
                             &nbsp;
                             {starshipClass}
                         </span>
                     </div>
                     <div>
-                        <span>Manufacturer:</span>
+                        <FormattedMessage
+                            defaultMessage = { messages[ 'starship-tile-3' ] }
+                            description = 'manufacturer'
+                            id = 'starship-tile-3'
+                            tagName = 'span'
+                        />
                         <span>
                             &nbsp;
                             {manufacturer}
                         </span>
                     </div>
                     <div>
-                        <span>Crew:</span>
+                        <FormattedMessage
+                            defaultMessage = { messages[ 'starship-tile-4' ] }
+                            description = 'crew'
+                            id = 'starship-tile-4'
+                            tagName = 'span'
+                        />
                         <span>
                             &nbsp;
                             {crew}
